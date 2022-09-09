@@ -27,6 +27,9 @@ async function run() {
       .collection("services");
     const reviewCollection = client.db("doctors_portal").collection("reviews");
     const bookingCollection = client.db("doctors_portal").collection("booking");
+    const subscriberCollection = client
+      .db("doctors_portal")
+      .collection("subscriber");
 
     // Appointment data
     app.get("/services", async (req, res) => {
@@ -94,6 +97,17 @@ async function run() {
         service.slots = available;
       });
       res.send(services);
+    });
+    // Collect Newsletter Subscriber Emails
+    app.get("/subscriber", async (req, res) => {
+      const query = {};
+      const subscriber = await subscriberCollection.find(query).toArray();
+      res.send(subscriber);
+    });
+    app.post("/subscriber", async (req, res) => {
+      const newSubscriber = req.body;
+      const subscriber = await subscriberCollection.insertOne(newSubscriber);
+      res.send(subscriber);
     });
   } finally {
   }
