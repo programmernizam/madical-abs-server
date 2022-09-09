@@ -40,6 +40,13 @@ async function run() {
     });
     // Reviews;
     app.get("/reviews", async (req, res) => {
+      const query = {};
+      const cursor = reviewCollection.find(query);
+      const reviews = await cursor.toArray();
+      res.send(reviews);
+    });
+    // Dashboard Reviews
+    app.get("/my-review", async (req, res) => {
       const email = req.query.email;
       const query = { email: email };
       const cursor = reviewCollection.find(query);
