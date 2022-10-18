@@ -19,7 +19,9 @@ app.get("/", (req, res) => {
 
 // Routes
 const serviceRoute = require("./Routes/v1/services.route");
+const reviewRoute = require("./Routes/v1/review.route");
 // Route
-app.use("/api/v1/services", serviceRoute);
+app.use("/api/v1/service", serviceRoute);
+app.use("/api/v1/review", reviewRoute);
 
 module.exports = app;

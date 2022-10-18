@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-// Schema
+// Service Schema
 const serviceSchema = mongoose.Schema(
   {
     name: {
@@ -21,7 +21,7 @@ const serviceSchema = mongoose.Schema(
   }
 );
 
-// Model
+// Service Model
 const Service = mongoose.model("Service", serviceSchema);
 
 module.exports = Service;
