@@ -1,19 +1,12 @@
 const express = require("express");
-
 const router = express.Router();
+const serviceController = require("../../controllers/service.controller");
 
-/**
- * @api {get} /services all service
- * @description get all services
- * @apiPermission admin, users
- */
-
-router.get("/", async (req, res) => {
-  // const query = {};
-  // const cursor = serviceCollection.find(query);
-  // const services = await cursor.toArray();
-  // res.send(services);
-  res.send("Service page")
-});
+router
+  .route("/")
+  // Get All Services
+  .get(serviceController.getServices)
+  // Create a new service
+  .post(serviceController.createService)
 
 module.exports = router;
